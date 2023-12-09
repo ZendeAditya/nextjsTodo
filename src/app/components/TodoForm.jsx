@@ -3,7 +3,8 @@ import React from "react";
 const TodoForm = () => {
   return (
     <>
-      <section className="w-[40rem] h-[30rem] border-2 rounded-md">
+      <section className="w-[40rem] h-[30rem] border-2 rounded-md shadow-md">
+        <h2 className="text-center py-2 text-3xl font-semibold">Student Form</h2>
         <form
           action="#"
           className="flex flex-col flex-wrap items-center justify-center [&_div]:flex [&_div]:items-start [&_div]:flex-col text-lg p-3"
