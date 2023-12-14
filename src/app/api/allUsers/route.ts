@@ -5,7 +5,7 @@ export const POST = async (req, res) => {
   const { name, mobile, email, github } = await req.json();
   await connectDB();
   console.log("post method");
-  await Todo.create({ name, mobile, email, github });
+  Todo.create({ name, mobile, email, github });
   return NextResponse.json({ data: "topic created!" });
 };
 
