@@ -1,7 +1,7 @@
-import exp from "constants";
-import mongoose from "mongoose";
+import { truncate } from "fs";
+import mongoose, { Schema } from "mongoose";
 
-const studentSchema = new mongoose.Schema(
+const studentSchema = new Schema(
   {
     name: {
       type: String,
@@ -10,8 +10,6 @@ const studentSchema = new mongoose.Schema(
     mobile: {
       type: Number,
       require: true,
-      min: 10,
-      max: 10,
     },
     email: {
       type: String,
@@ -25,5 +23,6 @@ const studentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const Student =
-  mongoose.models.todo || mongoose.model("todo", studentSchema);
+const Todo = mongoose.models.Todo || mongoose.model("Todo", studentSchema);
+
+export default Todo;

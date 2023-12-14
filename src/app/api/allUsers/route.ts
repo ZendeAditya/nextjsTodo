@@ -1,22 +1,16 @@
 import connectDB from "@/app/helper/connectdb";
 import { NextResponse } from "next/server";
-import { Student } from "@/app/models/todo";
-
-export async function POST(req: string, res: string) {
+import Todo from "@/app/models/todo";
+export const POST = async (req, res) => {
+  const { name, mobile, email, github } = await req.json();
   await connectDB();
-  const studentData = {
-    name: "random user",
-    mobile: 1234563434,
-    email: "randomuser@gmail.com",
-    github: "randomusergithub",
-  };
-  let studentFirst = await Student.create(studentData);
-  return NextResponse.json({data: studentFirst});
-}
+  console.log("post method");
+  await Todo.create({ name, mobile, email, github });
+  return NextResponse.json({ data: "topic created!" });
+};
 
-export async function GET(req: string, res: string) {
+export const GET = async () => {
   await connectDB();
-  const data = await Student.find();
-  console.log("data", data);
-  return NextResponse.json({ result: data });
-}
+  const stu = await Todo.find();
+  return NextResponse.json({ msg: stu });
+};
