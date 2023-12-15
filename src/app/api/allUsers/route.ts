@@ -1,6 +1,7 @@
 import connectDB from "@/app/helper/connectdb";
 import { NextResponse } from "next/server";
 import Todo from "@/app/models/todo";
+
 export const POST = async (req, res) => {
   const { name, mobile, email, github } = await req.json();
   await connectDB();

@@ -6,7 +6,6 @@ export default function Home() {
     <>
       <section className='flex items-center justify-center flex-col'>
           <Hero/>
-          <TodoForm/>
       </section>
     </>
   )
