@@ -1,42 +1,57 @@
 "use client";
 import React, { useState } from "react";
-import Router, { useRouter } from "next/navigation";
+import Error from "next/error";
+import axios from "axios";
 const TodoForm = ({ model }) => {
-  const [title, setTitle] = useState("");
+  const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [email, setEmail] = useState("");
   const [github, setGithub] = useState("");
-  const router = useRouter();
+
   const handleForm = async (e) => {
     e.preventDefault();
-    if (!title || !mobile || !email || !github) {
-      alert("all fields are require!");
+  
+    if (!name || !mobile || !email || !github) {
+      alert("All fields are required!");
       return;
     }
+  
+    let url = "http://127.0.0.1:3000/api/allusers";
+  
     try {
-      const res = await fetch("http://localhost:3000/api/allusers", {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({ title, mobile, email, github }),
-      });
-      if (res.ok) {
-        setTitle("");
+      const res = await axios.post(
+        url,
+        {
+          name: name,
+          mobile: mobile,
+          email: email,
+          github: github,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+  
+      if (res.statusText = "OK") {
+        alert("Data submitted successfully!");
+        setName("");
         setMobile("");
         setEmail("");
         setGithub("");
-        alert("Information stored into the database");
       } else {
-        throw new Error("Faild to create student data");
+        console.log("Something went wrong!");
       }
     } catch (error) {
-      console.log(error);
+      console.log("Error", error);
     }
   };
-
+  
   return (
     <>
       <section
-        className={` absolute w-96 h-[30rem] md:w-[40rem] md:h-[30rem] border-2 rounded-md shadow-md top-52 ${
+        className={`absolute w-96 h-[30rem] md:w-[40rem] md:h-[30rem] border-2 rounded-md shadow-md top-52 ${
           model ? "-translate-y-[50rem]" : "block"
         } duration-500 ease-in rounded-md bg-slate-500 z-10`}
       >
@@ -55,9 +70,9 @@ const TodoForm = ({ model }) => {
               name="textName"
               id="nameId"
               onChange={(e) => {
-                setTitle(e.target.value);
+                setName(e.target.value);
               }}
-              value={title}
+              value={name}
             />
             <label htmlFor="mobileId">Your Mobile No:</label>
             <input
@@ -89,9 +104,14 @@ const TodoForm = ({ model }) => {
               }}
               value={github}
             />
-            <button className="py-2 m-2 rounded-md bg-green-400 text-white hover:bg-green-300 px-10">
-              Submit
-            </button>
+            <div className="flex items-center justify-start gap-2 ">
+              <button
+                type="submit"
+                className="py-2 m-2 rounded-md bg-green-400 text-white hover:bg-green-300 px-10"
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </form>
       </section>

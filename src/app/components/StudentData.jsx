@@ -12,7 +12,6 @@ const getTopics = async () => {
     }
 
     const data = await res.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -23,7 +22,6 @@ const StudentData = async () => {
   const { stu } = await getTopics();
 
   if (!stu || !Array.isArray(stu)) {
-    // Handle the case where stu is undefined or not an array
     return <div>Error: Invalid student data format</div>;
   }
   return (
@@ -74,9 +72,9 @@ const StudentData = async () => {
                         </a>
                         <a
                           href="#"
-                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline m-2"
+                          className="font-medium text-red-600 dark:text-red-500 hover:underline m-2"
                         >
-                          Update
+                          Delete
                         </a>
                       </td>
                     </tr>
