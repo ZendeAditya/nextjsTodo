@@ -38,7 +38,7 @@ const TodoForm = ({ model }) => {
       <section
         className={` absolute w-96 h-[30rem] md:w-[40rem] md:h-[30rem] border-2 rounded-md shadow-md top-52 ${
           model ? "-translate-y-[50rem]" : "block"
-        } duration-500 ease-in`}
+        } duration-500 ease-in rounded-md bg-slate-500 z-10`}
       >
         <h2 className="text-center py-2 text-3xl font-semibold">
           Student Form
