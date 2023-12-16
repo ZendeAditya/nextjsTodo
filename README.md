@@ -11,6 +11,8 @@ A simple CRUD application built with Next.js 14, Tailwind CSS, Axios, Mongoose, 
 - [Folder Structure](#folder-structure)
 - [Contributing](#contributing)
 - [License](#license)
+![image](https://github.com/ZendeAditya/nextjsTodo/assets/91424824/41580e4e-00e8-43cd-af5b-64e9e9d9171d)
+
 
 ## Installation
 
